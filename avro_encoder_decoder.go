@@ -20,6 +20,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+
 	avro "github.com/elodina/go-avro"
 )
 
@@ -154,7 +155,7 @@ func NewKafkaAvroDecoderAuth(url string, auth *KafkaAvroAuth) *KafkaAvroDecoder 
 }
 
 func (this *KafkaAvroDecoder) Decode(bytes []byte) (interface{}, error) {
-	if bytes == nil {
+	if bytes == nil || len(bytes) == 0 {
 		return nil, nil
 	} else {
 		if bytes[0] != 0 {
